@@ -1,1 +1,46 @@
-\\teste
+@baseUrl = http://localhost:3000
+
+### ✅ 1. Criar novo usuário (adopter)
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Jéssica",
+  "email": "jessica@email.com",
+  "password": "123456",
+  "phone": "51999999999"
+}
+
+### ✅ 2. Login do usuário
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "jessica@email.com",
+  "password": "123456"
+}
+
+### ✅ 3. Listar pets disponíveis (rota pública)
+GET {{baseUrl}}/pets/available
+
+### ✅ 4. Cadastrar pet (requer token de admin)
+POST {{baseUrl}}/pets
+Authorization: Bearer SEU_TOKEN_ADMIN
+Content-Type: application/json
+
+{
+  "name": "Toby",
+  "age": 2,
+  "species": "dog",
+  "size": "medium",
+  "description": "Muito alegre"
+}
+
+### ✅ 5. Adotar pet (requer token de adopter)
+POST {{baseUrl}}/adoptions
+Authorization: Bearer SEU_TOKEN_ADOPTER
+Content-Type: application/json
+
+{
+  "pet_id": 1
+}

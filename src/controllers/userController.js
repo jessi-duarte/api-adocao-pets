@@ -4,11 +4,13 @@ class UserController {
   static async create(req, res) {
     try {
       const id = await UserService.createUser(req.body)
-      res.status(201).json({ message: 'Usuário criado.', id })
-    } catch (err) {
-      res.status(500).json({ error: 'Erro ao criar usuário.' })
+      res.status(201).json({ message: 'Usuário criado com sucesso', id })
+    } catch (error) {
+      console.error('Erro ao criar usuário:', error)
+      res.status(500).json({ error: 'Erro interno ao criar usuário' })
     }
   }
+
 
   static async getAll(req, res) {
     const users = await UserService.getAllUsers()
